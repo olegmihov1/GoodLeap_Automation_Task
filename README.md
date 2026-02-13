@@ -1,4 +1,4 @@
-# Quality Engineering Test Automation Project
+# GoodLeap QA Home Task Project
 
 A comprehensive test automation suite for **Swag Labs** (UI) and **Swagger Petstore** (API) built with Python, Playwright, and pytest.
 
@@ -15,8 +15,6 @@ A comprehensive test automation suite for **Swag Labs** (UI) and **Swagger Petst
 ---
 
 ## Overview
-
-This project contains automated tests for:
 
 | Component | Target Application | Framework |
 |-----------|-------------------|-----------|
@@ -64,19 +62,13 @@ Project Task Goodleap/
 
 - **Python 3.10+** installed
 - **pip** package manager
-- Internet connection (tests run against live applications)
 
 ---
 
 ## Installation
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/YOUR_USERNAME/qa-automation-project.git
-cd qa-automation-project
-```
-
-### 2. Create Virtual Environment (Recommended)
+``
+### 1. Create Virtual Environment
 ```bash
 # Windows
 python -m venv venv
@@ -87,14 +79,18 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Install Dependencies
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
+python.exe -m pip install --upgrade pip
+pip install pytest
 ```
 
-### 4. Install Playwright Browsers
+### 3. Install Playwright Browsers
 ```bash
+pip install playwright
 playwright install
+pip install requests playwright pytest pytest-html pytest-asyncio
 ```
 
 ---
