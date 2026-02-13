@@ -66,7 +66,7 @@ Project Task Goodleap/
 ---
 
 ## Installation
-
+Download all files from GitHub repository to your local machine. Open Command Prompt (CMD), navigate to the project folder, and then start setting up the Python environment.
 ``
 ### 1. Create Virtual Environment
 ```bash
