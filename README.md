@@ -270,11 +270,5 @@ python -m venv venv
 
 ## Author
 
-**QA Engineer**  
-Date: February 2026
+**Oleg Mihov**  
 
----
-
-## License
-
-This project is for demonstration and evaluation purposes.
