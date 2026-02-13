@@ -1,0 +1,460 @@
+================================================================================
+                    SWAG LABS - AUTOMATED TEST SCENARIOS
+================================================================================
+Application: https://www.saucedemo.com/
+Framework: Playwright for Python
+Author: QA Engineer
+Date: February 2026
+================================================================================
+
+TABLE OF CONTENTS
+-----------------
+1. Login Functionality
+2. Inventory/Products Page
+3. Shopping Cart
+4. Checkout Flow
+
+================================================================================
+1. LOGIN FUNCTIONALITY (tests/test_login.py)
+================================================================================
+
+Test ID: LOGIN-001
+Name: Valid User Login
+Priority: CRITICAL
+Type: Smoke Test
+Description: Verify user can login with valid credentials
+Preconditions: User is on login page
+Steps:
+  1. Enter valid username (standard_user)
+  2. Enter valid password (secret_sauce)
+  3. Click Login button
+Expected Result: User is redirected to inventory page
+--------------------------------------------------------------------------------
+
+Test ID: LOGIN-002
+Name: Invalid Username Login
+Priority: CRITICAL
+Description: Verify error is shown for invalid username
+Steps:
+  1. Enter invalid username
+  2. Enter valid password
+  3. Click Login button
+Expected Result: Error message "Epic sadface: Username and password do not match"
+--------------------------------------------------------------------------------
+
+Test ID: LOGIN-003
+Name: Invalid Password Login
+Priority: CRITICAL
+Description: Verify error is shown for invalid password
+Steps:
+  1. Enter valid username
+  2. Enter invalid password
+  3. Click Login button
+Expected Result: Error message displayed
+--------------------------------------------------------------------------------
+
+Test ID: LOGIN-004
+Name: Locked Out User Login
+Priority: CRITICAL
+Description: Verify locked out user cannot login
+Steps:
+  1. Enter locked_out_user username
+  2. Enter valid password
+  3. Click Login button
+Expected Result: Error message "locked out"
+--------------------------------------------------------------------------------
+
+Test ID: LOGIN-005
+Name: Empty Username Login
+Priority: HIGH
+Description: Verify error for empty username
+Steps:
+  1. Leave username empty
+  2. Enter password
+  3. Click Login button
+Expected Result: Error message "Username is required"
+--------------------------------------------------------------------------------
+
+Test ID: LOGIN-006
+Name: Empty Password Login
+Priority: HIGH
+Description: Verify error for empty password
+Steps:
+  1. Enter username
+  2. Leave password empty
+  3. Click Login button
+Expected Result: Error message "Password is required"
+--------------------------------------------------------------------------------
+
+Test ID: LOGIN-007
+Name: Empty Credentials Login
+Priority: MEDIUM
+Description: Verify error when both fields empty
+Steps:
+  1. Leave both fields empty
+  2. Click Login button
+Expected Result: Error message "Username is required"
+--------------------------------------------------------------------------------
+
+Test ID: LOGIN-008
+Name: Logout
+Priority: HIGH
+Type: Smoke Test
+Description: Verify user can logout
+Preconditions: User is logged in
+Steps:
+  1. Click burger menu
+  2. Click Logout
+Expected Result: User is redirected to login page
+--------------------------------------------------------------------------------
+
+================================================================================
+2. INVENTORY/PRODUCTS PAGE (tests/test_inventory.py)
+================================================================================
+
+Test ID: INV-001
+Name: Inventory Page Displays Products
+Priority: HIGH
+Type: Smoke Test
+Description: Verify all products are displayed
+Preconditions: User is logged in
+Steps:
+  1. Navigate to inventory page
+Expected Result: 6 products are displayed
+--------------------------------------------------------------------------------
+
+Test ID: INV-002
+Name: Inventory Page Title
+Priority: MEDIUM
+Description: Verify page title is correct
+Steps:
+  1. Navigate to inventory page
+Expected Result: Title shows "Products"
+--------------------------------------------------------------------------------
+
+Test ID: INV-003
+Name: All Products Have Names
+Priority: MEDIUM
+Description: Verify all products have names
+Steps:
+  1. Check each product card
+Expected Result: All 6 products have non-empty names
+--------------------------------------------------------------------------------
+
+Test ID: INV-004
+Name: All Products Have Prices
+Priority: MEDIUM
+Description: Verify all products have prices
+Steps:
+  1. Check each product card
+Expected Result: All products have prices starting with "$"
+--------------------------------------------------------------------------------
+
+Test ID: INV-005
+Name: Sort Products A to Z
+Priority: CRITICAL
+Description: Verify sorting by name ascending
+Steps:
+  1. Select "Name (A to Z)" from dropdown
+Expected Result: Products sorted alphabetically A-Z
+--------------------------------------------------------------------------------
+
+Test ID: INV-006
+Name: Sort Products Z to A
+Priority: CRITICAL
+Description: Verify sorting by name descending
+Steps:
+  1. Select "Name (Z to A)" from dropdown
+Expected Result: Products sorted alphabetically Z-A
+--------------------------------------------------------------------------------
+
+Test ID: INV-007
+Name: Sort Products Price Low to High
+Priority: CRITICAL
+Description: Verify sorting by price ascending
+Steps:
+  1. Select "Price (low to high)" from dropdown
+Expected Result: Products sorted by price ascending
+--------------------------------------------------------------------------------
+
+Test ID: INV-008
+Name: Sort Products Price High to Low
+Priority: CRITICAL
+Description: Verify sorting by price descending
+Steps:
+  1. Select "Price (high to low)" from dropdown
+Expected Result: Products sorted by price descending
+--------------------------------------------------------------------------------
+
+Test ID: INV-009
+Name: Add Single Product to Cart
+Priority: CRITICAL
+Description: Verify adding single product to cart
+Steps:
+  1. Click "Add to cart" on a product
+Expected Result: Cart badge shows "1"
+--------------------------------------------------------------------------------
+
+Test ID: INV-010
+Name: Add Multiple Products to Cart
+Priority: CRITICAL
+Description: Verify adding multiple products to cart
+Steps:
+  1. Add Backpack to cart
+  2. Add Bike Light to cart
+  3. Add Bolt T-Shirt to cart
+Expected Result: Cart badge shows "3"
+--------------------------------------------------------------------------------
+
+Test ID: INV-011
+Name: Remove Product from Cart on Inventory
+Priority: HIGH
+Description: Verify removing product from inventory page
+Steps:
+  1. Add product to cart
+  2. Click "Remove" button
+Expected Result: Cart badge disappears
+--------------------------------------------------------------------------------
+
+Test ID: INV-012
+Name: Add to Cart Button Changes to Remove
+Priority: MEDIUM
+Description: Verify button state change after adding
+Steps:
+  1. Add product to cart
+Expected Result: Button text changes to "Remove"
+--------------------------------------------------------------------------------
+
+================================================================================
+3. SHOPPING CART (tests/test_cart.py)
+================================================================================
+
+Test ID: CART-001
+Name: Empty Cart Display
+Priority: HIGH
+Type: Smoke Test
+Description: Verify empty cart page
+Steps:
+  1. Click cart icon without adding items
+Expected Result: Cart page shows "Your Cart" with no items
+--------------------------------------------------------------------------------
+
+Test ID: CART-002
+Name: Single Item in Cart
+Priority: CRITICAL
+Description: Verify single item appears in cart
+Steps:
+  1. Add Backpack to cart
+  2. Go to cart
+Expected Result: Backpack is displayed in cart
+--------------------------------------------------------------------------------
+
+Test ID: CART-003
+Name: Multiple Items in Cart
+Priority: CRITICAL
+Description: Verify multiple items in cart
+Steps:
+  1. Add Backpack and Bike Light
+  2. Go to cart
+Expected Result: Both items displayed in cart
+--------------------------------------------------------------------------------
+
+Test ID: CART-004
+Name: Remove Item from Cart
+Priority: CRITICAL
+Description: Verify removing item from cart page
+Steps:
+  1. Add two items to cart
+  2. Go to cart
+  3. Remove one item
+Expected Result: Only one item remains
+--------------------------------------------------------------------------------
+
+Test ID: CART-005
+Name: Remove All Items from Cart
+Priority: HIGH
+Description: Verify cart is empty after removing all
+Steps:
+  1. Add item to cart
+  2. Go to cart
+  3. Remove item
+Expected Result: Cart is empty
+--------------------------------------------------------------------------------
+
+Test ID: CART-006
+Name: Continue Shopping
+Priority: HIGH
+Description: Verify Continue Shopping returns to inventory
+Steps:
+  1. Go to cart
+  2. Click "Continue Shopping"
+Expected Result: User returns to inventory page
+--------------------------------------------------------------------------------
+
+Test ID: CART-007
+Name: Cart Persists After Continue Shopping
+Priority: HIGH
+Description: Verify cart items persist
+Steps:
+  1. Add item, go to cart
+  2. Continue shopping
+  3. Add another item
+  4. Go to cart
+Expected Result: Both items in cart
+--------------------------------------------------------------------------------
+
+Test ID: CART-008
+Name: Cart Shows Item Prices
+Priority: MEDIUM
+Description: Verify prices displayed in cart
+Steps:
+  1. Add item to cart
+  2. Go to cart
+Expected Result: Price is displayed
+--------------------------------------------------------------------------------
+
+Test ID: CART-009
+Name: Proceed to Checkout
+Priority: HIGH
+Type: Smoke Test
+Description: Verify navigation to checkout
+Steps:
+  1. Add item to cart
+  2. Go to cart
+  3. Click Checkout
+Expected Result: User navigates to checkout step one
+--------------------------------------------------------------------------------
+
+================================================================================
+4. CHECKOUT FLOW (tests/test_checkout.py)
+================================================================================
+
+Test ID: CHK-001
+Name: Complete Checkout Flow (E2E)
+Priority: CRITICAL
+Type: Smoke Test
+Description: Complete end-to-end checkout
+Steps:
+  1. Add product to cart
+  2. Go to cart
+  3. Proceed to checkout
+  4. Fill customer info (First, Last, Postal)
+  5. Continue to overview
+  6. Click Finish
+Expected Result: Order completed with "Thank you for your order"
+--------------------------------------------------------------------------------
+
+Test ID: CHK-002
+Name: Checkout Multiple Items
+Priority: CRITICAL
+Description: Checkout with multiple items
+Steps:
+  1. Add 3 products to cart
+  2. Complete checkout flow
+Expected Result: All 3 items in overview, order completes
+--------------------------------------------------------------------------------
+
+Test ID: CHK-003
+Name: Checkout Required First Name
+Priority: CRITICAL
+Description: Verify first name validation
+Steps:
+  1. Go to checkout
+  2. Leave first name empty
+  3. Fill other fields
+  4. Click Continue
+Expected Result: Error "First Name is required"
+--------------------------------------------------------------------------------
+
+Test ID: CHK-004
+Name: Checkout Required Last Name
+Priority: CRITICAL
+Description: Verify last name validation
+Steps:
+  1. Go to checkout
+  2. Leave last name empty
+  3. Fill other fields
+  4. Click Continue
+Expected Result: Error "Last Name is required"
+--------------------------------------------------------------------------------
+
+Test ID: CHK-005
+Name: Checkout Required Postal Code
+Priority: CRITICAL
+Description: Verify postal code validation
+Steps:
+  1. Go to checkout
+  2. Leave postal code empty
+  3. Fill other fields
+  4. Click Continue
+Expected Result: Error "Postal Code is required"
+--------------------------------------------------------------------------------
+
+Test ID: CHK-006
+Name: Checkout Overview Shows Totals
+Priority: HIGH
+Description: Verify price totals on overview
+Steps:
+  1. Add item to cart
+  2. Proceed to checkout overview
+Expected Result: Subtotal, tax, and total displayed
+--------------------------------------------------------------------------------
+
+Test ID: CHK-007
+Name: Cancel Checkout Step One
+Priority: MEDIUM
+Description: Verify cancel returns to cart
+Steps:
+  1. Go to checkout step one
+  2. Click Cancel
+Expected Result: User returns to cart
+--------------------------------------------------------------------------------
+
+Test ID: CHK-008
+Name: Cancel Checkout Step Two
+Priority: MEDIUM
+Description: Verify cancel from overview
+Steps:
+  1. Go to checkout overview
+  2. Click Cancel
+Expected Result: User returns to inventory
+--------------------------------------------------------------------------------
+
+Test ID: CHK-009
+Name: Back Home After Order Complete
+Priority: HIGH
+Type: Smoke Test
+Description: Verify Back Home navigation
+Steps:
+  1. Complete order
+  2. Click Back Home
+Expected Result: User returns to inventory
+--------------------------------------------------------------------------------
+
+Test ID: CHK-010
+Name: Cart Empty After Order Complete
+Priority: HIGH
+Description: Verify cart is cleared after checkout
+Steps:
+  1. Complete order
+  2. Go back home
+  3. Check cart
+Expected Result: Cart is empty
+--------------------------------------------------------------------------------
+
+================================================================================
+                              TEST SUMMARY
+================================================================================
+
+Category          | Total Tests | Critical | High | Medium | Smoke
+------------------|-------------|----------|------|--------|------
+Login             |      8      |    4     |  2   |   2    |   2
+Inventory         |     12      |    6     |  2   |   4    |   1
+Cart              |      9      |    3     |  5   |   1    |   2
+Checkout          |     10      |    5     |  3   |   2    |   2
+------------------|-------------|----------|------|--------|------
+TOTAL             |     39      |   18     | 12   |   9    |   7
+
+================================================================================
+                              END OF DOCUMENT
+================================================================================
