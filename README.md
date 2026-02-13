@@ -132,11 +132,6 @@ pytest -v -m api
 pytest -v --html=reports/test-report.html --self-contained-html
 ```
 
-### Run in Parallel
-```bash
-pytest -v -n auto
-```
-
 ### Run Specific Test File
 ```bash
 pytest tests/test_login.py -v
